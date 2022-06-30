@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+           <div class="row">
+               <div class="borderleft row col-2 d-flex flex-column bg-white">
+                   <div class="menu d-flex flex-column mt-4">
+                    <button class="text-white bi bi-house btn btn-primary mb-2" type="button" data-container="body"> Return home
+                    </button>
+                    <button class="text-white bi bi-box-arrow-up btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Most upvoted</button>
+                    <button class="text-white bi bi-star btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top" > Favorite</button>
+                    <button class="text-white bi bi-person btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Profile</button>
+                    <button  class="text-white bi bi-door-open btn btn-primary mb-2" type="button"  data-container="body" data-toggle="popover" data-placement="top"> Log out</button>
+                   </div>
+               </div>
+               <div class="row col-10 d-flex justify-content-between bg-white">
+                    {{ form_start(form) }}
+                   <div type="text" class="form-control shadow shadow-lg shadow-intensity-lg mb-2 form[title]" aria-label="Default" aria-describedby="inputGroup-sizing-default" style="width:35rem;">
+                    {{ form_widget(form.title) }}
+                   </div>
+                    {{ form_end(form) }}
+                   {% for project in project %}
+                   <div class="card mt-4 rounded rounded-5 bg-primary shadow-lg p-3 " style="width: 18rem;">
+                       <div class="d-flex justify-content-center">
+                        <img class="card-img-top rounded" src="/assets/images/project/{{ project.imageName }}" alt="{{ project.imageName }}" style="max-height: 15rem; max-width: 15rem; min-height: 10rem; min-width: 10rem;">
+                       </div>
+                           <div class="d-flex justify-content-center flex-row-reverse mt-4 mx-3">
+                           <h1 class="text-white fs-5 fw-bold ">{{ project.title }}</h1>
+                       </div>
+                       <div class="card-body">
+                           <p class="card-text text-white">{{ project.description|slice(0,200)}}</p>
+                           <div class="d-flex justify-content-around mt-5">
+                               <i class="bi-lg bi-star text-white fs-5" style="font-size: 2rem;"></i>
+                               <i class="bi bi-box-arrow-up text-white fs-5" style="font-size: 2rem;"></i>
+                           </div>
+                       </div>
+                   </div>
+                   {% endfor %}
+               </div>
+           </div>
+    {% endblock %}
